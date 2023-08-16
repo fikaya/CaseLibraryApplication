@@ -1,0 +1,79 @@
+﻿@using LibraryApplication.WebApp.Models.ViewModels
+@model BookEditionNumberCrudViewModel
+
+@{
+    ViewData["Title"] = "Kitap Detay Oluştur";
+    int bookID = 0;
+    @if (ViewBag.BookID != null)
+    {
+        bookID = (int)ViewBag.BookID;
+    }
+}
+
+@section Styles{
+    <partial name="_ValidationSummaryErrrorsPartial" />
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h3 class="display-4 border-bottom">
+            @ViewData["Title"]
+        </h3>
+    </div>
+</div>
+
+<div class="d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
+    <div class="card card-plain">
+        <div class="card-header">
+            <div class="col-6">
+                <div class="text-danger small" asp-validation-summary="All"></div>
+            </div>
+            <div class="card-body">
+                <form role="form" method="post" asp-action="Create" asp-controller="BookEditionNumber">
+
+                    <div class="input-group input-group-outline mb-3">
+                        <input hidden asp-for="BookID" value="@bookID">
+                    </div>
+
+                    <label asp-for="ISBN" class="font-weight-bold"></label>
+
+                    <div class="input-group input-group-outline mb-3">
+                        <input asp-for="ISBN" type="text" class="form-control">
+                    </div>
+
+                    <label asp-for="ReleaseDate" class="font-weight-bold"></label>
+
+                    <div class="input-group input-group-outline mb-3">
+                        <input asp-for="ReleaseDate" type="date" class="form-control">
+                    </div>
+
+                    <label asp-for="ReleasePage" class="font-weight-bold"></label>
+
+                    <div class="input-group input-group-outline mb-3">
+                        <input asp-for="ReleasePage" type="number" class="form-control">
+                    </div>
+
+                    <label asp-for="NumberOfBook" class="font-weight-bold"></label>
+
+                    <div class="input-group input-group-outline mb-3">
+                        <input asp-for="NumberOfBook" type="number" class="form-control">
+                    </div>
+
+                    <label style="display:block" asp-for="EditionNumberID" class="font-weight-bold"></label>
+
+                    <div class="input-group input-group-outline mb-3">
+                        <select asp-for="EditionNumberID" class="form-control" asp-items="((List<SelectListItem>)@ViewData["editionNumbers"])">
+                            <option selected>
+                                Lütfen Yayınevini Seçiniz.
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="text-center">
+                        <input class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" type="submit" value="Gönder">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

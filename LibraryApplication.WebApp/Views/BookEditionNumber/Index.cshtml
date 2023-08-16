@@ -1,0 +1,107 @@
+﻿@using LibraryApplication.WebApp.Models.ViewModels
+@model List<BookEditionNumberViewModel>
+
+@{
+    ViewData["Title"] = "İlgili Kitap Detayları";
+    int bookID = 0;
+    @if (ViewBag.BookID != null)
+    {
+        bookID = (int)ViewBag.BookID;
+    }
+}
+
+<div class="row">
+    <div class="col ml-3">
+        <div class="card-body px-0 pt-2 pl-2 pb-2">
+            <div class="table-responsive p-0">
+                <a href="/BookEditionNumber/Create?bookID=@bookID">
+                    <span class="badge badge-sm bg-gradient-secondary p-3">Kİtaba Aİt Basım Numarası Ekle</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+
+        <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                    <h6 class="text-white text-capitalize ps-3">İlgili Kitap Detayları</h6>
+                </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kitap Adı</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Basım Numarası</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ISBN</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kİtap Adetİ</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kİtap Sayfa Sayısı</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kİtap Yayınlanma Tarİhİ</th>
+                                <th class="text-secondary opacity-7"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    <div class="d-flex flex-column justify-content-center text-center">
+                                        <h6 class="mb-0 text-sm">@item.BookName</h6>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column justify-content-center text-center">
+                                        <h6 class="mb-0 text-sm">@item.EditionNumber</h6>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column justify-content-center text-center">
+                                        <h6 class="mb-0 text-sm">@item.ISBN</h6>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column justify-content-center text-center">
+                                        <h6 class="mb-0 text-sm">@item.NumberOfBook</h6>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column justify-content-center text-center">
+                                        <h6 class="mb-0 text-sm">@item.ReleasePage</h6>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column justify-content-center text-center">
+                                        <h6 class="mb-0 text-sm">@item.ReleaseDate</h6>
+                                    </div>
+                                </td>
+                                <td class="align-middle text-center text-sm">
+                                    <a href="#">
+                                        <span class="badge badge-sm bg-gradient-secondary">Kİtaba Aİt Resmi Ekle</span>
+                                    </a>
+                                </td>
+                                <td class="align-middle text-center text-sm">
+                                    <a href="/Reservation/Create?editionNumberID=@item.BookEditionNumberID">
+                                        <span class="badge badge-sm bg-gradient-secondary">@(item.NumberOfBook==0?"Adet Yetersizliğinden Rezervasyon Yapılamaz.":"Rezervasyon Yap")</span>
+                                    </a>
+                                </td>
+                                <td class="align-middle">
+                                    <a href="">
+                                        <span class="badge badge-sm bg-gradient-faded-warning">Düzenle</span>
+                                    </a>
+                                    <a href="">
+                                        <span class="badge badge-sm bg-gradient-danger">Sİl</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+ 

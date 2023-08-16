@@ -1,0 +1,69 @@
+﻿@using LibraryApplication.WebApp.Models.ViewModels
+@model ReservationCrudViewModel
+
+@{
+    ViewData["Title"] = "Rezervasyon Oluştur";
+    
+    int bookEditionNumberID = 0;
+
+    @if (ViewBag.BookEditionNumberID != null)
+    {
+        bookEditionNumberID = (int)ViewBag.BookEditionNumberID;
+    }
+}
+
+@section Styles{
+    <partial name="_ValidationSummaryErrrorsPartial" />
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h3 class="display-4 border-bottom">
+            @ViewData["Title"]
+        </h3>
+    </div>
+</div>
+
+<div class="d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
+    <div class="card card-plain">
+        <div class="card-header">
+            <div class="col-6">
+                <div class="text-danger small" asp-validation-summary="All"></div>
+            </div>
+            <div class="card-body">
+                <form role="form" method="post" asp-action="Create" asp-controller="Reservation">
+
+                    <div class="input-group input-group-outline mb-3">
+                        <input hidden asp-for="BookEditionNumberID" value="@bookEditionNumberID">
+                    </div>
+
+                    <label asp-for="ReservationDate" class="font-weight-bold"></label>
+
+                    <div class="input-group input-group-outline mb-3">
+                        <input asp-for="ReservationDate" type="datetime-local" class="form-control">
+                    </div>
+
+                    <label asp-for="DeliveryDate" class="font-weight-bold"></label>
+
+                    <div class="input-group input-group-outline mb-3">
+                        <input asp-for="DeliveryDate" type="datetime-local" class="form-control">
+                    </div>
+
+                    <label asp-for="UserID" class="font-weight-bold"></label>
+
+                    <div class="input-group input-group-outline mb-3">
+                        <select asp-for="UserID" class="form-control" asp-items="((List<SelectListItem>)@ViewData["users"])">
+                            <option selected>
+                                Lütfen Kullanıcı Seçiniz.
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="text-center">
+                        <input class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" type="submit" value="Gönder">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

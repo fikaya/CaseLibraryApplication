@@ -1,0 +1,104 @@
+﻿@using LibraryApplication.WebApp.Models.ViewModels
+@model List<ReservationViewModel>
+
+@{
+    ViewData["Title"] = "İlgili Kitap Detayları";
+    int bookID = 0;
+    @if (ViewBag.BookID != null)
+    {
+        bookID = (int)ViewBag.BookID;
+    }
+}
+
+<div class="row">
+    <div class="col ml-3">
+        <div class="card-body px-0 pt-2 pl-2 pb-2">
+            <div class="table-responsive p-0">
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+
+        <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                    <h6 class="text-white text-capitalize ps-3">KİTAP REZERVASYONLARI</h6>
+                </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kİtap Adı</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Basım Numarası</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ISBN</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Yayın Evİ</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kullanıcı Adı</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Teslİm EdİlDİ Mİ?</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rezervasyon Tarİhİ</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Teslİm Tarİhİ</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kullanıcıdan Gerİ Alım Tarİhİ</th>
+
+                                <th class="text-secondary opacity-7"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="d-flex flex-column justify-content-center text-center">
+                                            <h6 class="mb-0 text-sm">@item.BookName</h6>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column justify-content-center text-center">
+                                            <h6 class="mb-0 text-sm">@item.EditionNumberBook</h6>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column justify-content-center text-center">
+                                            <h6 class="mb-0 text-sm">@item.ISBN</h6>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column justify-content-center text-center">
+                                            <h6 class="mb-0 text-sm">@item.PubliserName</h6>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column justify-content-center text-center">
+                                            <h6 class="mb-0 text-sm">@item.UserFullName</h6>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column justify-content-center text-center">
+                                            <h6 class="mb-0 text-sm">@(item.IsItDelivered==false?"Teslim Edilmedi":"Teslim Edildi")</h6>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column justify-content-center text-center">
+                                            <h6 class="mb-0 text-sm">@item.ReservationDate</h6>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column justify-content-center text-center">
+                                            <h6 class="mb-0 text-sm">@item.DeliveryDate</h6>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column justify-content-center text-center">
+                                            <h6 class="mb-0 text-sm">@(item.BookReceivedDate==null?"Henüz Teslim Edilmedi":item.BookReceivedDate)</h6>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
